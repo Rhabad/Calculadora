@@ -13,7 +13,7 @@ public class Calculadora extends javax.swing.JFrame {
     /**
      * Creates new form Calculadora
      */
-    private int num1, num2;
+    private double num1, num2;
     private String operacion;
     
     
@@ -243,6 +243,11 @@ public class Calculadora extends javax.swing.JFrame {
         );
 
         btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
 
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -321,7 +326,7 @@ public class Calculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btnSumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSumaActionPerformed
-        num1 = Integer.parseInt(lblOperacion.getText());
+        num1 = Double.parseDouble(lblOperacion.getText());
         operacion = "+";
         lblOperacion.setText("");
     }//GEN-LAST:event_btnSumaActionPerformed
@@ -339,7 +344,7 @@ public class Calculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btnRestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaActionPerformed
-        num1 = Integer.parseInt(lblOperacion.getText());
+        num1 = Double.parseDouble(lblOperacion.getText());
         operacion = "-";
         lblOperacion.setText("");
     }//GEN-LAST:event_btnRestaActionPerformed
@@ -357,7 +362,7 @@ public class Calculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btnMultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultiplicarActionPerformed
-        num1 = Integer.parseInt(lblOperacion.getText());
+        num1 = Double.parseDouble(lblOperacion.getText());
         operacion = "x";
         lblOperacion.setText("");
     }//GEN-LAST:event_btnMultiplicarActionPerformed
@@ -367,32 +372,32 @@ public class Calculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_btn0ActionPerformed
 
     private void btnPuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPuntoActionPerformed
-        lblOperacion.setText(".");
+        lblOperacion.setText(lblOperacion.getText()+".");
     }//GEN-LAST:event_btnPuntoActionPerformed
 
     private void btnDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDivisionActionPerformed
-        num1 = Integer.parseInt(lblOperacion.getText());
+        num1 = Double.parseDouble(lblOperacion.getText());
         operacion = "/";
         lblOperacion.setText("");
         
     }//GEN-LAST:event_btnDivisionActionPerformed
 
     private void btnIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIgualActionPerformed
-        num2 = Integer.parseInt(lblOperacion.getText());
+        num2 = Double.parseDouble(lblOperacion.getText());
         
         
         switch (operacion) {
             case "+":
-                lblOperacion.setText(Integer.toString(num1+num2));
+                lblOperacion.setText(Double.toString(num1+num2));
                 break;
             case "-":
-                lblOperacion.setText(Integer.toString(num1-num2));
+                lblOperacion.setText(Double.toString(num1-num2));
                 break;
             case "/":
-                lblOperacion.setText(Integer.toString(num1/num2));
+                lblOperacion.setText(Double.toString(num1/num2));
                 break;
             case "x":
-                lblOperacion.setText(Integer.toString(num1*num2));
+                lblOperacion.setText(Double.toString(num1*num2));
                 break;
             default:
                 throw new AssertionError();
@@ -402,6 +407,14 @@ public class Calculadora extends javax.swing.JFrame {
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         lblOperacion.setText("");
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        String digitos = lblOperacion.getText();
+        if (digitos.length() > 0) {
+            String borrar = digitos.substring(0, digitos.length() - 1);
+            lblOperacion.setText(borrar);
+        }
+    }//GEN-LAST:event_btnBorrarActionPerformed
 
     
 
